@@ -1,0 +1,77 @@
+#include <stdio.h>
+
+int comparar(int resultado[], int posicao_resultado, int linha, int coluna, int apostas[linha][coluna])
+{
+    int contador_colunas = 0, acertou = 0;
+
+    while(posicao_resultado < 6)
+    {
+        while(contador_colunas < coluna)
+        {
+            if (apostas[linha][contador_colunas] == -1)
+            {
+                contador_colunas++;
+                break;
+            }
+            else if (apostas[linha][contador_colunas] == resultado[posicao_resultado]) acertou++;
+            contador_colunas++;
+        }
+        contador_colunas = 0;
+        posicao_resultado++;
+    }
+    
+    if(acertou == 6) return 1;
+    else return 0;
+}
+
+int main()
+{
+    int linhas, contador_linhas = 0, contador_colunas = 0, contador = 0, ganhadores = 0;
+    char virgula;
+    scanf("%d", &linhas);
+
+    int apostas[linhas][10];
+    int resultado[6];
+
+    for(contador_linhas = 0; contador_linhas < linhas; contador_linhas ++) //vai zerar a matriz
+    {
+        for(contador_colunas = 0; contador_colunas < 10; contador_colunas++)
+        {
+            apostas[contador_linhas][contador_colunas] = -1;
+        }
+    }
+    contador_linhas = 0; //recome�a na primeira linha
+    contador_colunas = 0; //recome�a na primeira coluna
+
+    while(contador_linhas < linhas)
+    {
+        while(contador_colunas < 10)
+        {
+            scanf("%d%c", &apostas[contador_linhas][contador_colunas], &virgula);
+            if (virgula == '\n') break;
+            else contador_colunas++;
+        }
+        contador_colunas = 0;
+        contador_linhas++;
+    }
+    contador_colunas = 0;
+    contador_linhas = 0;
+    
+    for(int posicao = 0; posicao < 6; posicao++)
+    {
+        scanf("%d", &resultado[posicao]);
+    }
+    
+    int linha_analise = 0;
+
+    while(linha_analise < linhas)
+    {
+        int ganhou = comparar(resultado, 0, linha_analise, 10, apostas);
+    
+        if (ganhou == 1) ganhadores++;
+        linha_analise++;
+    }
+    printf("Total de ganhadores: %d\n", ganhadores);
+
+    return 0;
+}
