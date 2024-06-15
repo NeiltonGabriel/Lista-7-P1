@@ -1,0 +1,117 @@
+#include <stdio.h>
+
+int main()
+{
+
+    int linhas, colunas, ataques, restaram = 0;
+    scanf("%d %d", &linhas, &colunas);
+
+    int celulas[linhas][colunas];
+
+    int contador_linhas = 0, contador_colunas = 0;
+
+    while(contador_linhas < linhas) //scanea a matriz
+    {
+        while(contador_colunas < colunas)
+        {
+            scanf("%d", &celulas[contador_linhas][contador_colunas]);//vai lendo todos os elementos da linha
+            contador_colunas++; //passa para a pr�xima coluna
+        }
+        contador_linhas++; //passa para a pr�xima linha
+        contador_colunas = 0; //recome�a na primeira coluna
+    }
+    contador_linhas = 0;
+    contador_colunas = 0;
+
+
+    scanf("%d", &ataques);
+
+
+    /*while(contador_linhas < linhas)//imprime a matriz
+    {
+        while(contador_colunas < colunas)
+        {
+            printf("%d ", celulas[contador_linhas][contador_colunas]); //printa os elementos de uma linha
+            if (contador_colunas == (colunas - 1)) printf("\n"); //se estou na �ltima coluna daquela linha quebra a linha
+            contador_colunas++; //passa para a pr�xima coluna
+        }
+        contador_linhas++; //passa para a pr�xima linha
+        contador_colunas = 0; //recome�a na primeira coluna
+    }
+    contador_linhas = 0; //recome�a na primeira linha
+    contador_colunas = 0; //recome�a na primeira coluna
+
+    printf("ataques antes: %d\n", ataques);*/
+
+    if ((linhas % 2) == 0) // quantidade de linhas par ? mata de linha por linha
+    {
+        while(contador_linhas < linhas)
+        {
+            while(contador_colunas < colunas)
+            {
+                if (celulas[contador_linhas][contador_colunas] == 1 && ataques > 0)
+                {
+                    celulas[contador_linhas][contador_colunas] = 0;
+                    ataques--;
+                }
+                contador_colunas++;             
+            }
+            contador_linhas++;
+            contador_colunas = 0;
+        }
+        contador_colunas = 0;
+        contador_linhas = 0;
+    }
+    else
+    {
+        while(contador_colunas < colunas)
+        {
+            while (contador_linhas < linhas)
+            {
+                if (celulas[contador_linhas][contador_colunas] == 1 && ataques > 0)
+                {
+                    celulas[contador_linhas][contador_colunas] = 0;
+                    ataques--;
+                }
+                contador_linhas++;
+            }
+            contador_colunas++;
+            contador_linhas = 0;
+        }
+        contador_colunas = 0;
+        contador_linhas = 0;
+    }
+    
+    //printf("\n");
+
+    while(contador_linhas < linhas)//imprime a matriz
+    {
+        while(contador_colunas < colunas)
+        {
+            if (contador_colunas == (colunas - 1)) printf("%d\n", celulas[contador_linhas][contador_colunas]); //se estou na �ltima coluna daquela linha quebra a linha
+            else printf("%d ", celulas[contador_linhas][contador_colunas]);
+            contador_colunas++; //passa para a pr�xima coluna
+        }
+        contador_linhas++; //passa para a pr�xima linha
+        contador_colunas = 0; //recome�a na primeira coluna
+    }
+    contador_colunas = 0;
+    contador_linhas = 0;
+
+    while(contador_linhas < linhas)
+    {
+        while(contador_colunas < colunas)
+        {
+            if (celulas[contador_linhas][contador_colunas] == 1) restaram++;
+            contador_colunas++;
+        }
+        contador_linhas++;
+        contador_colunas = 0;
+    }
+
+    /*printf("ataques depois: %d\n", ataques);
+    printf("sobraram: %d\n", restaram);*/
+    printf("%d %d", ataques, restaram);
+
+    return 0;
+}
