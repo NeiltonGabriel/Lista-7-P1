@@ -1,0 +1,70 @@
+#include <stdio.h>
+
+int main()
+{
+    int tamanho;
+    scanf("%d", &tamanho);
+    
+    if (tamanho == 0)
+    {
+        printf("Vazia\n");
+        return 0;
+    }
+
+    int matriz1[tamanho][tamanho], matriz2[tamanho][tamanho], matriz_resultante[tamanho][tamanho];
+    int contador_colunas = 0, contador_linhas = 0;
+
+    while(contador_linhas < tamanho)
+    {
+        while(contador_colunas < tamanho)
+        {
+            scanf("%d", &matriz1[contador_linhas][contador_colunas]);
+            contador_colunas++;
+        }
+        contador_colunas = 0;
+        contador_linhas++;
+    }
+    contador_colunas = 0;
+    contador_linhas = 0;
+
+    while(contador_linhas < tamanho)
+    {
+        while(contador_colunas < tamanho)
+        {
+            scanf("%d", &matriz2[contador_linhas][contador_colunas]);
+            contador_colunas++;
+        }
+        contador_colunas = 0;
+        contador_linhas++;
+    }
+    contador_colunas = 0;
+    contador_linhas = 0;
+    
+    while(contador_linhas < tamanho)
+    {
+        while(contador_colunas < tamanho)
+        {
+            matriz_resultante[contador_linhas][contador_colunas] = matriz1[contador_linhas][contador_colunas] + matriz2[contador_linhas][contador_colunas];
+            contador_colunas++;
+        }
+        contador_colunas = 0;
+        contador_linhas++;
+    }
+    contador_colunas = 0;
+    contador_linhas = 0;
+
+    while(contador_linhas < tamanho)//imprime a matriz
+    {
+        while(contador_colunas < tamanho)
+        {
+            printf("%d\n", matriz_resultante[contador_linhas][contador_colunas]); //printa os elementos de uma linha
+            contador_colunas++; //passa para a pr�xima coluna
+        }
+        contador_linhas++; //passa para a pr�xima linha
+        contador_colunas = 0; //recome�a na primeira coluna
+    }
+    contador_linhas = 0; //recome�a na primeira linha
+    contador_colunas = 0; //recome�a na primeira coluna
+    
+    return 0;
+}
