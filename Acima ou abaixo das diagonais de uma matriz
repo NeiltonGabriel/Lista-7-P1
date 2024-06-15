@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char local[8];
+    int limite, tamanho, soma = 0, contador_coluna = 0, contador_linha = 0;
+    scanf("%s", local);
+    scanf("%d %d", &limite, &tamanho);
+    int matriz[tamanho][tamanho];
+
+    while(contador_linha < tamanho)
+    {
+        while(contador_coluna < tamanho)
+        {
+            scanf("%d", &matriz[contador_linha][contador_coluna]);
+            contador_coluna++;
+        }
+        contador_coluna = 0;
+        contador_linha++;
+    }
+    contador_coluna = 0;
+    contador_linha = 0;
+
+    if (strcmp(local, "acima") == 0)
+    {
+        while(contador_linha < tamanho)
+        {
+            while(contador_coluna < tamanho)
+            {
+                if (contador_coluna <= contador_linha) contador_coluna++;
+                else
+                {
+                    soma += matriz[contador_linha][contador_coluna];
+                    contador_coluna++;
+                }
+            }
+            contador_coluna = 0;
+            contador_linha++;
+        }
+    }
+    else
+    {
+        while(contador_linha < tamanho)
+        {
+            while(contador_coluna < tamanho)
+            {
+                if (contador_coluna >= contador_linha) contador_coluna++;
+                else
+                {
+                    soma += matriz[contador_linha][contador_coluna];
+                    contador_coluna++;
+                }
+            }
+            contador_coluna = 0;
+            contador_linha++;
+        }
+    }
+
+    (soma > limite) ? printf("True") : printf("False");
+
+    return 0;
+}
