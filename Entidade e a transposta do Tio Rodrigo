@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+int main()
+{
+    int tamanho, contador_linhas = 0, contador_colunas = 0, comeco = 0;
+    scanf("%d", &tamanho);
+    int matriz[tamanho][tamanho];
+    int fim = (tamanho - 1);
+
+    while(contador_linhas < tamanho)
+    {
+        while(contador_colunas < tamanho)
+        {
+            scanf("%d", &matriz[contador_linhas][contador_colunas]);
+            contador_colunas++;
+        }
+        contador_colunas = 0;
+        contador_linhas++;
+    }
+    contador_colunas = 0;
+    contador_linhas = 0;
+
+    while(comeco != (tamanho / 2))
+    {
+        int caixa = matriz[comeco][comeco];
+
+        matriz[comeco][comeco] = matriz[fim][fim];
+        matriz[fim][fim] = caixa;
+
+        comeco++;
+        fim--;
+    }
+    comeco = 0;
+    fim = (tamanho - 1);
+
+    while(comeco != tamanho)
+    {
+        matriz[comeco][fim] *= 2;
+        comeco++;
+        fim--;
+    }
+
+    while(contador_linhas < tamanho)
+    {
+        while(contador_colunas < tamanho)
+        {
+            printf("%d ", matriz[contador_colunas][contador_linhas]);
+            if (contador_colunas == (tamanho - 1)) printf("\n");
+            contador_colunas++;
+        }
+        contador_colunas = 0;
+        contador_linhas++;
+    }
+
+    return 0;
+}
