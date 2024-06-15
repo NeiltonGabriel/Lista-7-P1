@@ -1,0 +1,95 @@
+#include <stdio.h>
+
+int main()
+{
+
+    int matrizes, instancia = 1;
+    scanf("%d", &matrizes);
+
+    int sudoku[9][9];
+
+    while(matrizes > 0)
+    {
+        int contador_coluna = 0, contador_linha = 0, pare = 0;
+
+        while(contador_linha < 9)
+        {
+            while(contador_coluna < 9)
+            {
+                scanf("%d", &sudoku[contador_linha][contador_coluna]);
+                contador_coluna++;
+            }
+            contador_coluna = 0;
+            contador_linha++;
+        }
+        contador_coluna = 0;
+        contador_linha = 0;
+
+        int valor = 1, apareceu = 0;
+
+        while(contador_linha < 9)
+        {
+            if (pare == 1) break;
+
+            while(valor < 10)
+            {
+                while(contador_coluna < 9)
+                {
+                    if (sudoku[contador_linha][contador_coluna] == valor) apareceu++;
+                    contador_coluna++;
+                }
+                if(apareceu != 1)
+                {
+                    pare = 1;
+                    break;
+                }
+                contador_coluna = 0;
+                apareceu = 0;
+                valor++;
+            }
+            valor = 1;
+            contador_coluna = 0;
+            contador_linha++;
+        }
+        valor = 1;
+        apareceu = 0;
+        contador_coluna = 0;
+        contador_linha = 0;
+
+        while(contador_coluna < 9)
+        {
+            if (pare == 1) break;
+
+            while(valor < 10)
+            {
+                while(contador_linha < 9)
+                {
+                    if (sudoku[contador_linha][contador_coluna] == valor) apareceu++;
+                    contador_linha++;
+                }
+                if (apareceu != 1)
+                {
+                    pare = 1;
+                    break;
+                }
+                contador_linha = 0;
+                apareceu = 0;
+                valor++;
+            }
+            valor = 1;
+            contador_linha = 0;
+            contador_coluna++;
+        }
+        valor = 1;
+        apareceu = 0;
+        contador_coluna = 0;
+        contador_linha = 0;
+
+        (pare == 0) ? printf("Instancia %d\nSIM\n\n", instancia) : printf("Instancia %d\nNAO\n\n", instancia);
+
+        instancia++;
+        matrizes--;
+    }
+
+    return 0;
+}
