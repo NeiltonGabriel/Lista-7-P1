@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+int main()
+{
+    int linhas, colunas, votos = 0, princesa = 1;
+    int contador_linhas = 0, contador_colunas = 0;
+
+    scanf("%d %d", &colunas, &linhas);
+
+    int votacao[linhas][colunas];
+
+    while(contador_linhas < linhas) //lendo a entrada
+    {
+        while(contador_colunas < colunas)
+        {
+            scanf("%d", &votacao[contador_linhas][contador_colunas]);
+            contador_colunas++;
+        }
+        contador_colunas = 0;
+        contador_linhas++;
+    }
+    contador_colunas = 0;
+    contador_linhas = 0;
+
+
+    while(contador_colunas < colunas)
+    {
+        while(contador_linhas < linhas)
+        {
+            if (votacao[contador_linhas][contador_colunas] == 1) votos += 1;
+            contador_linhas++;
+        }
+        printf("Princesa %d: %d voto(s)\n", princesa, votos);
+        votos = 0;
+        princesa++;
+        contador_linhas = 0;
+        contador_colunas++;
+    }
+
+    return 0;
+}
