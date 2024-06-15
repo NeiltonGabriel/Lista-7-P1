@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+void montar(int linhas, int colunas, int matriz[linhas][colunas])
+{
+    int l_inicio = 0, c_inicio = 0, valor = 1;
+    while(l_inicio < linhas && c_inicio < colunas)
+    {
+        for (int l = l_inicio; l < linhas; l++)
+        {
+            for (int c = c_inicio; c < colunas; c++)
+            {
+                matriz[l][c] = valor;
+            }
+        }
+        l_inicio++;
+        c_inicio++;
+        linhas--;
+        colunas--;
+        valor++;
+    }
+    return;
+}
+
+int main()
+{
+    int tamanho = 1;
+    
+    while(tamanho)
+    {
+        scanf("%d", &tamanho);
+        if (tamanho == 0) break;
+
+        int matriz[tamanho][tamanho];
+        montar(tamanho, tamanho, matriz);
+
+        for (int l = 0; l < tamanho; l++)
+        {
+            for (int c = 0; c < tamanho; c++)
+            {
+                if (c == (tamanho - 1)) printf("%d\n", matriz[l][c]);
+                else printf("%d ", matriz[l][c]);
+            }
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
