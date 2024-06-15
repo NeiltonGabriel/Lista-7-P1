@@ -1,0 +1,74 @@
+#include <stdio.h>
+
+int main()
+{
+    int maior = -100000, delta, soma_diagonal = 0, principal = 0;
+    int matriz[3][3];
+    double media, soma_geral = 0;
+    
+    int contador_colunas = 0, contador_linhas = 0;
+    
+    while(contador_linhas < 3)
+    {
+        while(contador_colunas < 3)
+        {
+            scanf("%d", &matriz[contador_linhas][contador_colunas]);
+            contador_colunas++;
+        }
+        contador_colunas = 0;
+        contador_linhas++;
+    }
+    contador_colunas = 0;
+    contador_linhas = 0;
+
+    while(contador_linhas < 3)
+    {
+        while(contador_colunas < 3)
+        {
+            if (matriz[contador_linhas][contador_colunas] > maior) maior = matriz[contador_linhas][contador_colunas];
+            if (principal < 3) soma_diagonal += matriz[principal][principal];
+            soma_geral += matriz[contador_linhas][contador_colunas];
+            contador_colunas++;
+            principal++;
+        }
+        contador_colunas = 0;
+        contador_linhas++;
+    }
+    contador_colunas = 0;
+    contador_linhas = 0;
+
+    media = soma_geral / 9.0;
+
+    delta = (maior > 0) ? 1 : ((maior < 0) ? -1 : 0);
+
+    printf("%.2lf %d %d %d\n", media, maior, delta, soma_diagonal);
+    
+    /*while(contador_linhas < 3)//imprime a matriz
+    {
+        while(contador_colunas < 3)
+        {
+            printf("%d ", matriz[contador_linhas][contador_colunas]); //printa os elementos de uma linha
+            if (contador_colunas == 2) printf("\n"); //se estou na �ltima coluna daquela linha quebra a linha
+            contador_colunas++; //passa para a pr�xima coluna
+        }
+        contador_linhas++; //passa para a pr�xima linha
+        contador_colunas = 0; //recome�a na primeira coluna
+    }
+    contador_linhas = 0; //recome�a na primeira linha
+    contador_colunas = 0; //recome�a na primeira coluna*/
+
+    return 0;
+}
+
+
+/*
+printar:
+
+    double .2 media de todos os valores
+    o maior valor
+    delta:
+        1 -> maior valor > 0
+        -1 -> maior valor < 0
+        0 -> maior valor == 0
+    soma_diagonal da diagonal principal
+*/
